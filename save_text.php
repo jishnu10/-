@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Generate random directory name
             $randomDirectoryName = generateRandomString(8);
-            $domain = "www.myweb12.com";
+            $domain = "https://jishnu10.github.io/-/";
             $url = $domain . "/" . $randomDirectoryName;
 
             // Create directory if not exists
