@@ -3,112 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Item Selection</title>
-<style>
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
-    
-    #selectedItems li {
-        cursor: pointer;
-    }
-
-    @media print {
-        body * {
-            visibility: hidden;
-        }
-        #selectedItems, #selectedItems * {
-            visibility: visible;
-        }
-        #selectedItems {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-    }
-</style>
+<title>Text Saver</title>
 </head>
 <body>
-
-<h2>Select Items and Quantities</h2>
-
-<form id="itemForm">
-    <label for="items">Select an item:</label>
-    <select id="items">
-        <option value="Watermelon">Watermelon</option>
-        <option value="Strawberry">Strawberry</option>
-        <option value="Pineapple">Pineapple</option>
-        <option value="Papaya">Papaya</option>
-        <option value="Orange">Orange</option>
-        <option value="Mango">Mango</option>
-        <option value="Kiwi">Kiwi</option>
-        <option value="Blueberry">Blueberry</option>
-        <option value="Banana">Banana</option>
-        <option value="Apple">Apple</option>
-        <option value="Currant">Currant</option>
-        <option value="Fig">Fig</option>
-        <option value="Gooseberry">Gooseberry</option>
-        <option value="Date">Date</option>
-        <option value="Olive">Olive</option>
-        <option value="Tangerine">Tangerine</option>
-        <option value="Apricot">Apricot</option>
-        <option value="Boysenberry">Boysenberry</option>
-        <option value="Ackee">Ackee</option>
-        <option value="Durian">Durian</option>
-    </select>
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" min="1" value="1">
-    <button type="button" onclick="addItem()">Add Item</button>
-</form>
-
-<hr>
-
-<h2>Selected Items</h2>
-
-<ul id="selectedItems" onclick="removeItem(event)">
-</ul>
-
-<button type="button" onclick="printItems()">Print Selected Items</button>
-
-<script>
-    let selectedItems = [];
-
-    function addItem() {
-        const selectedItem = document.getElementById('items').value;
-        const quantity = parseInt(document.getElementById('quantity').value);
-        
-        const existingItem = selectedItems.find(item => item.name === selectedItem);
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            selectedItems.push({ name: selectedItem, quantity: quantity });
-        }
-        displayItems();
-    }
-
-    function displayItems() {
-        const itemList = document.getElementById('selectedItems');
-        itemList.innerHTML = '';
-        selectedItems.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = `${item.quantity} ${item.name}`;
-            itemList.appendChild(li);
-        });
-    }
-
-    function removeItem(event) {
-        if (event.target.tagName === 'LI') {
-            const itemName = event.target.textContent.split(' ')[1]; // Get the item name
-            selectedItems = selectedItems.filter(item => item.name !== itemName);
-            displayItems();
-        }
-    }
-
-    function printItems() {
-        window.print();
-    }
-</script>
-
+  <h1>Text Saver</h1>
+  <form method="post" action="save_text.php">
+    <textarea name="textInput" rows="4" cols="50" placeholder="Enter your text here"></textarea><br>
+    <button type="submit" name="save">Save</button>
+  </form>
 </body>
 </html>
